@@ -30,7 +30,7 @@ namespace Home_task_1
         {
             N = n;
             M = m;
-            _matrix = new int[n, m];
+            _matrix = new int[N, M];
         }
         
         public override string ToString()
