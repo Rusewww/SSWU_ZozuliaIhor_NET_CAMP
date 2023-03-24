@@ -27,8 +27,16 @@ namespace Home_task_1
             {
                 for (int j = 0; j < _m; j++)
                 {
-                    sb.Append(_matrix[i, j] + " ");
+                    if (_matrix[i, j] >= 10)
+                    {
+                        sb.Append(_matrix[i, j] + " ");
+                    }
+                    else
+                    {
+                        sb.Append(_matrix[i, j] + "  ");
+                    }
                 }
+
                 sb.Append("\n");
             }
             return sb.ToString();
@@ -37,29 +45,29 @@ namespace Home_task_1
         public void MakeSnake()
         {
             int[,] directions = { {1, 0}, {0, 1}, {-1, 0}, {0, -1} };  // право, вниз, ліво, вгору
-            int current_direction = 0;
-            int current_row = 0;
-            int current_col = 0;
-            int current_value = 1;
+            var currentDirection = 0;
+            var currentRow = 0;
+            var currentCol = 0;
+            var currentValue = 1;
             
-            for (int i = 0; i < _n * _m; i++)
+            for (var i = 0; i < _n * _m; i++)
             {
-                _matrix[current_row, current_col] = current_value;
-                current_value++;
+                _matrix[currentRow, currentCol] = currentValue;
+                currentValue++;
 
-                int next_row = current_row + directions[current_direction, 0];
-                int next_col = current_col + directions[current_direction, 1];
+                var nextRow = currentRow + directions[currentDirection, 0];
+                var nextCol = currentCol + directions[currentDirection, 1];
 
-                if (next_row >= 0 && next_row < _n && next_col >= 0 && next_col < _m && _matrix[next_row, next_col] == 0)
+                if (nextRow >= 0 && nextRow < _n && nextCol >= 0 && nextCol < _m && _matrix[nextRow, nextCol] == 0)
                 {
-                    current_row = next_row;
-                    current_col = next_col;
+                    currentRow = nextRow;
+                    currentCol = nextCol;
                 }
                 else
                 {
-                    current_direction = (current_direction + 1) % 4;
-                    current_row += directions[current_direction, 0];
-                    current_col += directions[current_direction, 1];
+                    currentDirection = (currentDirection + 1) % 4;
+                    currentRow += directions[currentDirection, 0];
+                    currentCol += directions[currentDirection, 1];
                 }
             }
         }
