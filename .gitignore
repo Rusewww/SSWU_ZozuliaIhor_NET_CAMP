@@ -1,0 +1,5 @@
+.idea
+.vs
+*.exe
+bin
+obj
