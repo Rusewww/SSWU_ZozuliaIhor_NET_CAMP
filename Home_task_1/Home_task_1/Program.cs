@@ -2,6 +2,6 @@
 
 using Home_task_1;
 
-SnakeMatrix snake = new SnakeMatrix();
-snake.MakeSnake(false);
+SnakeMatrix snake = new SnakeMatrix(5, 5);
+snake.MakeSnake(true);
 Console.Write(snake.ToString());

@@ -8,19 +8,37 @@ namespace Home_task_1
         private int _n;
         private int _m;
         
+        public int N
+        {
+            get { return _n; }
+            set
+            {
+                _n = value > 0 ? value : 1;
+            }
+        }
+        
+        public int M
+        {
+            get { return _m; }
+            set
+            {
+                _m = value > 0 ? value : 1;
+            }
+        }
+        
         public SnakeMatrix(int n = 3, int m = 4)
         {
-            _n = n;
-            _m = m;
+            N = n;
+            M = m;
             _matrix = new int[n, m];
         }
         
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < _n; i++)
+            var sb = new StringBuilder();
+            for (var i = 0; i < N; i++)
             {
-                for (int j = 0; j < _m; j++)
+                for (var j = 0; j < M; j++)
                 {
                     if (_matrix[i, j] >= 10)
                     {
@@ -49,7 +67,7 @@ namespace Home_task_1
             var currentCol = 0;
             var currentValue = 1;
             
-            for (var i = 0; i < _n * _m; i++)
+            for (var i = 0; i < N * M; i++)
             {
                 _matrix[currentRow, currentCol] = currentValue;
                 currentValue++;
@@ -57,7 +75,7 @@ namespace Home_task_1
                 var nextRow = currentRow + directions[currentDirection, 0];
                 var nextCol = currentCol + directions[currentDirection, 1];
 
-                if (nextRow >= 0 && nextRow < _n && nextCol >= 0 && nextCol < _m && _matrix[nextRow, nextCol] == 0)
+                if (nextRow >= 0 && nextRow < N && nextCol >= 0 && nextCol < M && _matrix[nextRow, nextCol] == 0)
                 {
                     currentRow = nextRow;
                     currentCol = nextCol;
