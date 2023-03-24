@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
 namespace Home_task_1
 {
@@ -42,9 +37,13 @@ namespace Home_task_1
             return sb.ToString();
         }
         
-        public void MakeSnake()
+        
+        //* MakeSnake - метод який заповнює матрицю у вигляді спіральної змійки
+        //* direction - змінна яка задає напрям заповнення
+        public void MakeSnake(bool direction = true)
         {
-            int[,] directions = { {1, 0}, {0, 1}, {-1, 0}, {0, -1} };  // право, вниз, ліво, вгору
+            int[,] directions = direction ? new[,]{{1, 0}, {0, 1}, {-1, 0}, {0, -1}} : new [,]{{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+
             var currentDirection = 0;
             var currentRow = 0;
             var currentCol = 0;
