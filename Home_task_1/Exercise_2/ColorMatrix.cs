@@ -81,7 +81,7 @@ namespace Home_task_1
             var startCol = -1;
             var endRow = -1;
             var endCol = -1;
-            
+
             for (var i = 0; i < N; i++)
             {
                 var currentColor = -1;
@@ -109,9 +109,17 @@ namespace Home_task_1
                     }
                 }
             }
-            Console.Write("Колiр найдовшої горизонтальної лiнiї: {0} \n" +
-                          "Iндекс початкової точки: [{1},{2}];\nIндекс кiнцевої точки:[{3},{4}].\n", 
-                          _matrix[startRow, startCol], startRow, startCol, endRow, endCol);
+
+            if (startRow != -1 && endCol != -1)
+            {
+                Console.Write("Колiр найдовшої горизонтальної лiнiї: {0} \n" +
+                              "Iндекс початкової точки: [{1},{2}];\nIндекс кiнцевої точки:[{3},{4}].\n",
+                    _matrix[startRow, startCol], startRow, startCol, endRow, endCol);
+            }
+            else
+            {
+                Console.WriteLine("Error: У матрицi не iснує послiдовного горизонтального спiвпвдiння кольорiв.");
+            }
         }
     }
 }
