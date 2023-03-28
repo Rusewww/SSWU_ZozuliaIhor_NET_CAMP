@@ -1,13 +1,17 @@
-﻿using System.Text;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Home_task_1
+namespace Exercise_1
 {
     internal class SnakeMatrix
     {
         private int[,] _matrix;
         private int _n;
         private int _m;
-        
+
         public int N
         {
             get { return _n; }
@@ -16,7 +20,7 @@ namespace Home_task_1
                 _n = value > 0 ? value : 1;
             }
         }
-        
+
         public int M
         {
             get { return _m; }
@@ -25,14 +29,14 @@ namespace Home_task_1
                 _m = value > 0 ? value : 1;
             }
         }
-        
+
         public SnakeMatrix(int n = 3, int m = 4)
         {
             N = n;
             M = m;
             _matrix = new int[N, M];
         }
-        
+
         public override string ToString()
         {
             var sb = new StringBuilder();
@@ -54,19 +58,19 @@ namespace Home_task_1
             }
             return sb.ToString();
         }
-        
-        
+
+
         //* MakeSnake - метод який заповнює матрицю у вигляді спіральної змійки
         //* direction - змінна яка задає напрям заповнення
         public void MakeSnake(bool direction = true)
         {
-            int[,] directions = direction ? new[,]{{1, 0}, {0, 1}, {-1, 0}, {0, -1}} : new [,]{{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+            int[,] directions = direction ? new[,] { { 1, 0 }, { 0, 1 }, { -1, 0 }, { 0, -1 } } : new[,] { { 0, 1 }, { 1, 0 }, { 0, -1 }, { -1, 0 } };
 
             var currentDirection = 0;
             var currentRow = 0;
             var currentCol = 0;
             var currentValue = 1;
-            
+
             for (var i = 0; i < N * M; i++)
             {
                 _matrix[currentRow, currentCol] = currentValue;

@@ -1,12 +1,22 @@
-﻿using System.Text;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Home_task_1
+namespace Exercise_2
 {
     internal class ColorMatrix
     {
         private int[,] _matrix;
         private int _n;
         private int _m;
+
+        public int[,] Matrix
+        {
+            get { return _matrix; }
+            set { _matrix = value; }
+        }
 
         public int N
         {
@@ -32,7 +42,7 @@ namespace Home_task_1
             M = m;
             _matrix = new int[N, M];
         }
-        
+
         public ColorMatrix(int[,] matrix)
         {
             N = matrix.GetLength(0);
@@ -74,13 +84,11 @@ namespace Home_task_1
             }
         }
 
-        public void FindColor()
+        public (int startRow, int startCol, int Length) FindColor()
         {
             var maxLength = 0;
             var startRow = -1;
             var startCol = -1;
-            var endRow = -1;
-            var endCol = -1;
 
             for (var i = 0; i < N; i++)
             {
@@ -98,8 +106,6 @@ namespace Home_task_1
                             maxLength = currentLength;
                             startRow = i;
                             startCol = j - maxLength + 1;
-                            endRow = i;
-                            endCol = j;
                         }
                     }
                     else
@@ -110,7 +116,7 @@ namespace Home_task_1
                 }
             }
 
-            if (startRow != -1 && endCol != -1)
+            /*if (startRow != -1 && endCol != -1)
             {
                 Console.Write("Колiр найдовшої горизонтальної лiнiї: {0} \n" +
                               "Iндекс початкової точки: [{1},{2}];\nIндекс кiнцевої точки:[{3},{4}].\n",
@@ -119,7 +125,8 @@ namespace Home_task_1
             else
             {
                 Console.WriteLine("Error: У матрицi не iснує послiдовного горизонтального спiвпвдiння кольорiв.");
-            }
+            }*/
+            return (startRow, startCol, maxLength);
         }
     }
 }
