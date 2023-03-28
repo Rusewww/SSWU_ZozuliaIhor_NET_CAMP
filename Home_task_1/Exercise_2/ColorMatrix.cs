@@ -115,17 +115,6 @@ namespace Exercise_2
                     }
                 }
             }
-
-            /*if (startRow != -1 && endCol != -1)
-            {
-                Console.Write("Колiр найдовшої горизонтальної лiнiї: {0} \n" +
-                              "Iндекс початкової точки: [{1},{2}];\nIндекс кiнцевої точки:[{3},{4}].\n",
-                    _matrix[startRow, startCol], startRow, startCol, endRow, endCol);
-            }
-            else
-            {
-                Console.WriteLine("Error: У матрицi не iснує послiдовного горизонтального спiвпвдiння кольорiв.");
-            }*/
             return (startRow, startCol, maxLength);
         }
     }
