@@ -1,7 +1,7 @@
 ﻿using System.Text;
 
 namespace Home_task_1
-{
+{//dsfjhldh
     internal class SnakeMatrix
     {
         private int[,] _matrix;
