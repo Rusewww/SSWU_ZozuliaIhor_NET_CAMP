@@ -8,7 +8,7 @@ namespace Exercise_1
 {
     internal class Pump
     {
-        private int _efficiency;
+        private readonly int _efficiency;
         private double _power;
 
         public double Power
@@ -19,14 +19,14 @@ namespace Exercise_1
             }
             set
             {
-                _power = value;
+                if (Validator.ValidateNumber(value)) _power = value;
             }
         }
 
         public Pump(double power, int efficiency)
         {
             Power = power;
-            _efficiency = efficiency;
+            if (Validator.ValidateEfficiency(efficiency)) _efficiency = efficiency;
         }
 
         public double StartPump(double water)

@@ -8,6 +8,7 @@ namespace Exercise_1
 {
     internal class Simulator
     {
+        //Поля класу відображабть роботу однієї помпи для кількох користувачів.
         private WaterTower _waterTower;
         private User[] _users;
 

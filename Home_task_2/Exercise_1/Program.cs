@@ -1,6 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-
-namespace Exercise_1
+﻿namespace Exercise_1
 {
     internal class Program
     {

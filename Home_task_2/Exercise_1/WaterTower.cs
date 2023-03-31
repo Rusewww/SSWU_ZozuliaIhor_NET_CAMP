@@ -20,7 +20,7 @@ namespace Exercise_1
             }
             set
             {
-                _currentWaterLevel = value;
+                if (Validator.ValidateNumber(value)) _currentWaterLevel = value;
             }
         }
         
@@ -32,7 +32,7 @@ namespace Exercise_1
             }
             set
             {
-                _maxWaterLevel = value;
+                if (Validator.ValidateNumber(value)) _maxWaterLevel = value;
             }
         }
 
@@ -50,12 +50,17 @@ namespace Exercise_1
         
         public void UseWater(double water)
         {
-            //#TODO: Реалізувати метод викоризтання води користувачем з вежі. 
+            //#TODO: Реалізувати метод викориcтання води користувачем з вежі. 
         }
 
         public void FillWater()
         {
             //#TODO: реалізувати метод, який буде запускати помпу та заповнювати башту, якщо вона порожня.
+        }
+
+        public void ChangePump(Pump pump)
+        {
+            //#TODO: реалізувати метод, який буде замінювати помпу.
         }
         
     }
