@@ -34,5 +34,9 @@ namespace Exercise_1
             //#TODO: Реалізувати метод, який буде запускати помпу для заповнення башти, та повертати інформацію про час витрачений на це.
             return water/(_power*_efficiency);
         }
+        public override string ToString()
+        {
+            return  $"Насос, який качає {Power*_efficiency} л/хв.";
+        }
     }
 }

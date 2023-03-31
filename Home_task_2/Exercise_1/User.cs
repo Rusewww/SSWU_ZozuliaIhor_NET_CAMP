@@ -8,10 +8,12 @@ namespace Exercise_1
 {
     internal class User
     {
+        private int _id = 0;
         private double _waterConsumption;
 
         public User(double waterConsumption)
         {
+            _id += 1;
             _waterConsumption = waterConsumption;
         }
         
@@ -27,5 +29,10 @@ namespace Exercise_1
         }
         
         //#TODO: Реалізувати функції подібні до TakeShower, які будуть імітувати використання води реальним користувачем для різних цілей.
+        
+        public override string ToString()
+        {
+            return  $"Користувач {_id}: Cереднє використання води:{_waterConsumption}.";
+        }
     }
 }
