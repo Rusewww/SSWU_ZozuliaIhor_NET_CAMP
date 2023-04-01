@@ -14,11 +14,10 @@ namespace Exercise_3
         }
 
         //Функія FindHoles дозволяє нам знайти декілька наскірзних отворів у кубі, якщо вони існують
-        public string FindHoles()
+        public List<(int, int, int)> FindHoles()
         {
-            StringBuilder sb = new StringBuilder();
+            List<(int, int, int)> holes = new List<(int, int, int)>();
             int[,,] visited = new int[_size, _size, _size];
-            int holeNumber = 0;
             for (int i = 0; i < _size; i++)
             {
                 for (int j = 0; j < _size; j++)
@@ -69,25 +68,19 @@ namespace Exercise_3
                                     }
                                 }
                             }
-
-                            if ((x1 != x2) || (y1 != y2) || (z1 != z2))
+                            
+                            if (((x2 - x1 == _size - 1) || (y2 - y1 == _size - 1) || (z2 - z1 == _size - 1)))
                             {
                                 // знайдено отвір
-                                sb.AppendLine($"Отвiр {++holeNumber}:");
-                                sb.AppendLine($"Початок: ({x1}, {y1}, {z1})");
-                                sb.AppendLine($"Кiнець: ({x2}, {y2}, {z2})");
+                                holes.Add((x1, y1, z1));
+                                holes.Add((x2, y2, z2));
                             }
                         }
                     }
                 }
             }
 
-            if (sb.ToString() == "")
-            {
-                return "Наскрiзних отворiв не знайдено!";
-            }
-
-            return sb.ToString();
+            return holes;
         }
 
         private List<Tuple<int, int, int>> GetNeighbors(int x, int y, int z)
