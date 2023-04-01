@@ -74,7 +74,7 @@ namespace Home_task_1
 
                 var nextRow = currentRow + directions[currentDirection, 0];
                 var nextCol = currentCol + directions[currentDirection, 1];
-
+//У вас по 4 умови на кожній ітерації. Можна їх зменшити.
                 if (nextRow >= 0 && nextRow < N && nextCol >= 0 && nextCol < M && _matrix[nextRow, nextCol] == 0)
                 {
                     currentRow = nextRow;
