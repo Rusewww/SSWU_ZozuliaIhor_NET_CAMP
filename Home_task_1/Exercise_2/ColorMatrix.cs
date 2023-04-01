@@ -78,12 +78,12 @@ namespace Exercise_2
             for (var i = 0; i < N; i++)
             {
                 for (var j = 0; j < M; j++)
-                {
+                {//Цю константу слід винести з коду методу в відкрите поле.
                     _matrix[i, j] = rand.Next(0, 17);
                 }
             }
         }
-
+// треба повертати ще і колір.
         public (int startRow, int startCol, int Length) FindColor()
         {
             var maxLength = 0;
@@ -100,7 +100,7 @@ namespace Exercise_2
                     if (_matrix[i, j] == currentColor)
                     {
                         currentLength++;
-
+// На кожному співпадінні кольору перевіряти, чи не перевищили попередній максимум є затратним.
                         if (currentLength > maxLength)
                         {
                             maxLength = currentLength;

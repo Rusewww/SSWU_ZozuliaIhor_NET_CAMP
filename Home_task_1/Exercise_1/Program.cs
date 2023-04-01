@@ -1,7 +1,7 @@
 namespace Exercise_1
 {
     internal class Program
-    {
+    {// перевірте, будь ласка, чи тепер бачите?
         static void Main(string[] args)
         {
             Console.WriteLine("|============STANDART_MATRIX============|");
