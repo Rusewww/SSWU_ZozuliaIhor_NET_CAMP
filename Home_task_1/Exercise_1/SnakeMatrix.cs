@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace Home_task_1
+namespace Exercise_1
 {//dsfjhldh
     internal class SnakeMatrix
     {

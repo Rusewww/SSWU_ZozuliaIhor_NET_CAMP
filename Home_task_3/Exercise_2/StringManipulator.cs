@@ -10,16 +10,29 @@ namespace Exercise_2
 {
     internal class StringManipulator
     {
-        public static int? FindSecondIndex(string text, string subString)
+        private string _text = "";
+
+        public string Text
         {
-            int firstIndex = text.IndexOf(subString);
+            get { return _text; }
+            set { _text = value; }
+        }
+
+        public StringManipulator(string text)
+        {
+            _text = text;
+        }
+
+        public int? FindSecondIndex(string subString)
+        {
+            int firstIndex = Text.IndexOf(subString);
             if (firstIndex == -1)
             {
                 return null;
             }
             else
             {
-                int secondIndex = text.IndexOf(subString, firstIndex + 1);
+                int secondIndex = Text.IndexOf(subString, firstIndex + 1);
                 if (secondIndex == -1)
                 {
                     return null;
@@ -31,11 +44,11 @@ namespace Exercise_2
             }
         }
 
-        public static int? CountWordsStartingWithCapitalLetter(string text)
+        public int? CountWordsStartingWithCapitalLetter()
         {
             int count = 0;
             Regex regex = new Regex(@"\b[A-Z][a-z]*\b");
-            MatchCollection matches = regex.Matches(text);
+            MatchCollection matches = regex.Matches(Text);
             foreach (Match match in matches)
             {
                 if (char.IsUpper(match.Value[0]))
@@ -46,14 +59,14 @@ namespace Exercise_2
             return count;
         }
 
-        public static string ReplaceWordWithDoubleLetters(string text, string replace)
+        public string ReplaceWordWithDoubleLetters(string replace)
         {
             StringBuilder output = new StringBuilder();
             StringBuilder currentWord = new StringBuilder();
 
-            for (int i = 0; i < text.Length; i++)
+            for (int i = 0; i < Text.Length; i++)
             {
-                char c = text[i];
+                char c = Text[i];
 
                 if (char.IsLetter(c))
                 {
