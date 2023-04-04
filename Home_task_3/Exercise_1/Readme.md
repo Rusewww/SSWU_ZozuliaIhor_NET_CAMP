@@ -1,0 +1,1 @@
+﻿![](exercise1.png)
