@@ -45,7 +45,7 @@ namespace Exercise_2
         }
 
         public int? CountWordsStartingWithCapitalLetter()
-        {
+        { //регулярний застосовано правильно. А якщо без регулярного?
             int count = 0;
             Regex regex = new Regex(@"\b[A-Z][a-z]*\b");
             MatchCollection matches = regex.Matches(Text);
@@ -58,7 +58,7 @@ namespace Exercise_2
             }
             return count;
         }
-
+// цей метод не подобається. Поясню при потребі усно.
         public string ReplaceWordWithDoubleLetters(string replace)
         {
             StringBuilder output = new StringBuilder();
