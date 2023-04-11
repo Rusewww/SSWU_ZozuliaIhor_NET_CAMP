@@ -1,4 +1,6 @@
-﻿namespace Exercise_1
+﻿using System.Text.RegularExpressions;
+
+namespace Exercise_1
 {
     public class TextEditor
     {
@@ -22,7 +24,7 @@
             foreach (string line in Text)
             {
                 string[] lineSentences = line.Split('.', '!', '?');
-                
+                //Тут я поєдную початок речення з його продовженням. 
                 lineSentences[0] = currentSentence + lineSentences[0];
                 if (!line.EndsWith('.') && !line.EndsWith('!') && !line.EndsWith('?'))
                 {
@@ -39,17 +41,25 @@
             return sentences;
         }
 
-        public List<string> FindBrackets()
+        public List<string> FindBrackets(char openBracket = '(', char closeBracket = ')')
         {
             var sentencesInBrackets = new List<string>();
             foreach (var sentence in Text)
             {
-                if (sentence.Contains("(") && sentence.Contains(")"))
+                if (sentence.Contains(openBracket) && sentence.Contains(closeBracket))
                 {
                     sentencesInBrackets.Add(sentence);
                 }
             }
             return sentencesInBrackets;
+        }
+        
+        //Варіація функції FindBrackets з використанням regex та LINQ.
+        public List<string> FindBracketsRegex(char openBracket = '(', char closeBracket = ')')
+        {
+            var pattern = $"{Regex.Escape(openBracket.ToString())}.*?{Regex.Escape(closeBracket.ToString())}";
+            var regex = new Regex(pattern);
+            return Text.Where(sentence => regex.IsMatch(sentence)).ToList();
         }
     }
 }
