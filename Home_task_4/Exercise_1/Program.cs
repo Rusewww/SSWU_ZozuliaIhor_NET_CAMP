@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-            //Демонстрація на українській
+            //Демонстрація українською
             string[] textUa = {"Це (речення 1).А це", " (речення 2)!", "А також (речення 3 без [закритої] дужки.", "Текст."};
             var stringTextUa = new TextEditor(new List<string>(textUa));
             
@@ -26,7 +26,7 @@
                 Console.WriteLine("\t" + bracket);
             }
             
-            //Демонстрація на англійській
+            //Демонстрація англійською
             string[] textEn =
             {
                 "This is (sentence 1).And this", "(sentence 2)!",
