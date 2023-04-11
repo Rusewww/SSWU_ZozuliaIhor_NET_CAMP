@@ -1,7 +1,7 @@
 ﻿namespace Exercise_2
 {
     internal class Program
-    {
+    {// Користувач використовує воду з вежі... Чому стрілка до валідатора пунктирна. Валідатор використовують...
         private static void Main(string[] args)
         {
             var text = new StringManipulator("Baa nan dBaa nan bana nan Ban Ape");
