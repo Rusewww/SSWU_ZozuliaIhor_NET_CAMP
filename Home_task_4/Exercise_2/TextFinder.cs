@@ -1,6 +1,4 @@
-﻿using System.Text.RegularExpressions;
-
-namespace Exercise_2
+﻿namespace Exercise_2
 {
     public class TextFinder
     {
@@ -47,28 +45,60 @@ namespace Exercise_2
 
         private bool IsValidLocalPart(string localPart)
         {
-            if (localPart.Length == 0 || localPart.Length > 64)
+            if (localPart.Length == 0 || localPart.Length > 64 || localPart.StartsWith(".") ||
+                localPart.EndsWith(".") || localPart.Contains(".."))
             {
                 return false;
             }
 
-            if (localPart[0] == '.' || localPart[localPart.Length - 1] == '.')
+            if (localPart[0] == '"' && localPart[localPart.Length - 1] != '"')
             {
                 return false;
             }
 
+            if (localPart.Contains("\""))
+            {
+                return false;
+            }
+
+            // Перевірка символів
             for (int i = 0; i < localPart.Length; i++)
             {
                 char c = localPart[i];
-                if (!(char.IsLetterOrDigit(c) || c == '!' || c == '#' || c == '$' || c == '%' || c == '&' ||
-                      c == '\'' || c == '*' || c == '+' || c == '-' || c == '/' || c == '=' || c == '?' || c == '^' ||
-                      c == '_' || c == '`' || c == '{' || c == '|' || c == '}' || c == '~' || c == '.'))
+                if (c >= 0x80) // Включаємо інтернаціональні символи
+                {
+                    continue;
+                }
+
+                if (c == '@' || c == '<' || c == '>' || c == '[' || c == '\\' || c == ']' || c == ',' ||
+                    c == ';' || c == ':' || c == '(' || c == ')' || c == ' ' || c == '\t') // обмеження символів
+                {
+                    if (!localPart.StartsWith("\"") || !localPart.EndsWith("\""))
+                    {
+                        return false;
+                    }
+
+                    if (i > 0 && localPart[i - 1] != '\\')
+                    {
+                        return false;
+                    }
+                }
+
+                if (c == '"' && (i == 0 || localPart[i - 1] != '\\'))
                 {
                     return false;
                 }
 
                 if (c == '.' && (i == 0 || i == localPart.Length - 1 || localPart[i - 1] == '.' ||
                                  localPart[i + 1] == '.'))
+                {
+                    return false;
+                }
+
+                if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9') ||
+                      c == '!' || c == '#' || c == '$' || c == '%' || c == '&' || c == '\'' || c == '*' || c == '+' ||
+                      c == '-' || c == '/' || c == '=' || c == '?' || c == '^' || c == '_' || c == '`' ||
+                      c == '{' || c == '|' || c == '}' || c == '~' || c == '.'))
                 {
                     return false;
                 }
@@ -79,18 +109,18 @@ namespace Exercise_2
 
         private bool IsValidDomainPart(string domainPart)
         {
-            if (domainPart.Length == 0 || domainPart.Length > 255)
+            if (domainPart.Length == 0 || domainPart.Length > 253)
             {
                 return false;
             }
 
-            if (domainPart[domainPart.Length - 1] == '.')
+            if (domainPart.StartsWith("-") || domainPart.EndsWith("-"))
             {
                 return false;
             }
 
             var labels = domainPart.Split('.');
-            if (labels.Length != 2)
+            if (labels.Length < 2)
             {
                 return false;
             }
@@ -102,15 +132,12 @@ namespace Exercise_2
                     return false;
                 }
 
-                foreach (var c in label)
+                if (!label.All(c => char.IsLetterOrDigit(c) || c == '-'))
                 {
-                    if (!(char.IsLetterOrDigit(c) || c == '-' || c == '_'))
-                    {
-                        return false;
-                    }
+                    return false;
                 }
 
-                if (label[0] == '-' || label[label.Length - 1] == '-')
+                if (label.StartsWith("-") || label.EndsWith("-"))
                 {
                     return false;
                 }
@@ -118,6 +145,5 @@ namespace Exercise_2
 
             return true;
         }
-
     }
 }

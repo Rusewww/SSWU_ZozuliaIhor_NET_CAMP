@@ -6,8 +6,8 @@
         {
             string[] text =
             {
-                "simple@example.com adsasdqwrqsfa Abcex@ample.com dawdaw wdawdq rqw 21 1 ewe q eaWEawd",
-                "sadasdasdas other.email-with-hyphen@example.com a@asd mailhothis\\still\\not\allowe@asd dsusername@example.org"
+                "other.email-with-hyphen@example.com simpкle@example.com adsasdqwrqsfa Abcex@ample.com dawdaw wdawdq rqw 21 1 ewe q eaWEawd",
+                "sadasdasеdas t.oexample-indeed@strange-example.com a@asd mailhothis\\still\\not\allowe@asd.o dsusername@example.org"
             };
             var stringText = new TextFinder(new List<string>(text));
             Console.WriteLine("Виводимо валiднi емейли:");
