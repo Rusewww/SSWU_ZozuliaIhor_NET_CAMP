@@ -12,40 +12,31 @@ namespace Exercise_3
 
         public short Quarter
         {
-            get
-            {
-                return _quarter;
-            }
-            set
-            {
-                _quarter = value;
-            }
+            get => _quarter;
+            set => _quarter = value;
         }
 
         public void ReadApartmentsFromFile(string fileName)
         {
-            StreamReader reader = new StreamReader(fileName);
+            using StreamReader reader = new StreamReader(fileName);
 
-            string line = reader.ReadLine();
-            string[] parts = line.Split(' ');
-            _apartmentCount = int.Parse(parts[0]);
+            string[] parts = reader.ReadLine().Split(' ');
+            int apartmentCount = int.Parse(parts[0]);
             _quarter = short.Parse(parts[1]);
-            Apartment[] apartments = new Apartment[_apartmentCount];
 
-            for (int i = 0; i < _apartmentCount; i++)
+            Apartment[] apartments = new Apartment[apartmentCount];
+
+            for (int i = 0; i < apartmentCount; i++)
             {
-                line = reader.ReadLine();
-                parts = line.Split("; ");
+                parts = reader.ReadLine().Split("; ");
                 int apartmentNumber = int.Parse(parts[0]);
                 string address = parts[1];
                 string ownerLastName = parts[2];
                 int previousReading = int.Parse(parts[3]);
                 int currentReading = int.Parse(parts[4]);
-                string dateString = parts[5];
-                DateTime date = DateTime.ParseExact(dateString, "dd.MM.yyyy", CultureInfo.InvariantCulture);
+                DateTime date = DateTime.ParseExact(parts[5], "dd.MM.yyyy", CultureInfo.InvariantCulture);
 
-                apartments[i] = new Apartment(apartmentNumber, address, ownerLastName, previousReading, currentReading,
-                    date);
+                apartments[i] = new Apartment(apartmentNumber, address, ownerLastName, previousReading, currentReading, date);
             }
 
             Apartments = apartments;
@@ -54,22 +45,12 @@ namespace Exercise_3
 
         public string? ShowApartment(int apartmentNumber)
         {
-            foreach (var apartment in Apartments)
-            {
-                if (apartment.Number == apartmentNumber) return apartment.ToString();
-            }
-
-            return null;
+            return Apartments.FirstOrDefault(a => a.Number == apartmentNumber)?.ToString();
         }
 
         public string? ShowApartment(string ownerName)
         {
-            foreach (var apartment in Apartments)
-            {
-                if (apartment.OwnerName == ownerName) return apartment.ToString();
-            }
-
-            return null;
+            return Apartments.FirstOrDefault(a => a.OwnerName == ownerName)?.ToString();
         }
 
         public (string owner, double bill) FindMaxTax(double costOfElectricity)
@@ -88,13 +69,7 @@ namespace Exercise_3
 
         public string? ShowApartmentWithoutElectricity()
         {
-            foreach (var apartment in Apartments)
-            {
-                if (apartment.EndReading - apartment.StartReading == 0) return apartment.ToString();
-            }
-
-            return null;
+            return Apartments.FirstOrDefault(a => a.StartReading == a.EndReading)?.ToString();
         }
-
     }
 }

@@ -12,80 +12,38 @@ namespace Exercise_3
 
         public int Number
         {
-            get
-            {
-                return _number;
-            }
-
-            set
-            {
-                _number = value;
-            }
+            get => _number;
+            set => _number = value;
         }
         
         public string OwnerName
         {
-            get
-            {
-                return _ownerName;
-            }
-
-            set
-            {
-                _ownerName = value;
-            }
+            get => _ownerName;
+            set => _ownerName = value;
         }
         
         public int StartReading
         {
-            get
-            {
-                return _startReading;
-            }
-
-            set
-            {
-                _startReading = value;
-            }
+            get => _startReading;
+            set => _startReading = value;
         }
         
         public int EndReading
         {
-            get
-            {
-                return _endReading;
-            }
-
-            set
-            {
-                _endReading = value;
-            }
+            get => _endReading;
+            set => _endReading = value;
         }
         
         public string Address
         {
-            get
-            {
-                return _address;
-            }
-
-            set
-            {
-                _address = value;
-            }
+            get => _address;
+            set => _address = value;
         }
         
         public DateTime ReadingDate
         {
-            get
-            {
-                return _readingDate;
-            }
-
-            set
-            {
-                _readingDate = value;
-            }
+            get => _readingDate;
+            set => _readingDate = value;
         }
         
         public Apartment(int number,string address, string ownerName, int startReading, int endReading, DateTime readingDate)
