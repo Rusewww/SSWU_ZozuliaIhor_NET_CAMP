@@ -10,6 +10,18 @@ namespace Exercise_3
         private short _quarter;
         public Apartment[] Apartments;
 
+        public short Quarter
+        {
+            get
+            {
+                return _quarter;
+            }
+            set
+            {
+                _quarter = value;
+            }
+        }
+
         public void ReadApartmentsFromFile(string fileName)
         {
             StreamReader reader = new StreamReader(fileName);

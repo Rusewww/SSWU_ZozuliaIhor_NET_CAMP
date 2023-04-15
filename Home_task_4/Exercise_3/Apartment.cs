@@ -62,6 +62,32 @@ namespace Exercise_3
             }
         }
         
+        public string Address
+        {
+            get
+            {
+                return _address;
+            }
+
+            set
+            {
+                _address = value;
+            }
+        }
+        
+        public DateTime ReadingDate
+        {
+            get
+            {
+                return _readingDate;
+            }
+
+            set
+            {
+                _readingDate = value;
+            }
+        }
+        
         public Apartment(int number,string address, string ownerName, int startReading, int endReading, DateTime readingDate)
         {
             _number = number;
@@ -75,6 +101,11 @@ namespace Exercise_3
         public override string ToString()
         {
             return ($"Number: {_number}; Address: {_address}; Owner: {_ownerName}; Last: {_startReading}; Now: {_endReading}; {_readingDate.ToString("MMMM")}: {_readingDate.ToString("dd.MM.yy")}");
+        }
+
+        public (double bill, int flat) GetBillCost(double costOfElectricity)
+        {
+            return ((EndReading - StartReading) * costOfElectricity, Number);
         }
     }
 }
