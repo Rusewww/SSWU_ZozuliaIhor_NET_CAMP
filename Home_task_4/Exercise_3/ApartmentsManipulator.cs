@@ -34,7 +34,7 @@ namespace Exercise_3
                 string ownerLastName = parts[2];
                 int previousReading = int.Parse(parts[3]);
                 int currentReading = int.Parse(parts[4]);
-                DateTime date = DateTime.ParseExact(parts[5], "dd.MM.yyyy", CultureInfo.InvariantCulture);
+                DateTime date = DateTime.ParseExact(parts[5], "dd.MM.yy", CultureInfo.InvariantCulture);
 
                 apartments[i] = new Apartment(apartmentNumber, address, ownerLastName, previousReading, currentReading, date);
             }

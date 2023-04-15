@@ -1,6 +1,11 @@
-﻿5 1
-1; wqwrqwfe 1; Chel; 1000; 1100; 12.01.2023
-2; 4q24q24q 2; Ctr; 1010; 1010; 10.01.2023
-3; qrwqrqwda 3; Csad; 1600; 1800; 11.01.2023
-4; rwqr qwr 6; sdal; 2000; 2100; 16.01.2023
-5; rwqrqw rq 1; rql; 5000; 7100; 14.01.2023
+﻿10 1
+23; 123 Main St; Smith; 100; 200; 01.01.23
+45; 456 High St; Johnson; 75; 300; 05.02.23
+12; 789 Elm St; Brown; 200; 400; 03.01.23
+67; 321 Oak St; Lee; 50; 150; 15.03.23
+89; 654 Maple St; Davis; 120; 120; 21.04.23
+34; 987 Pine St; Garcia; 180; 320; 18.02.23
+56; 246 Cedar St; Rodriguez; 90; 290; 03.03.23
+78; 369 Spruce St; Wilson; 30; 200; 02.01.23
+90; 852 Birch St; Martinez; 50; 100; 11.01.23
+21; 753 Ash St; Hernandez; 150; 250; 08.03.23
