@@ -45,20 +45,19 @@
         private static void ShowApartmentsTable(double cost)
         {
             Console.WriteLine("Report for quarter {0}", apartments.Quarter);
-            Console.WriteLine("|{0,-4}|{1,-20}|{2,-15}|{3,-24}|{4,-21}|{5,-28}|{6,-35:F2}|", "No.", "Address",
+            Console.WriteLine("|{0,-4}|{1,-15}|{2,-24}|{3,-21}|{4,-28}|{5,-35:F2}|", "No.",
                 "Owner", "Electricity consumption", "Date of last reading", "Need to pay for electricity", "Days since the last fixation");
             Console.WriteLine(
-                "|----|--------------------|---------------|------------------------|---------------------|----------------------------|-----------------------------------|");
+                "|----|---------------|------------------------|---------------------|----------------------------|-----------------------------------|");
             foreach (var flat in apartments.Apartments)
             {
-                Console.WriteLine("|{0,-4}|{1,-20}|{2,-15}|{3,-24}|{4,-21}|{5,-28}|{6,-35:F2}|", flat.Number,
-                    flat.Address,
+                Console.WriteLine("|{0,-4}|{1,-15}|{2,-24}|{3,-21}|{4,-28}|{5,-35:F2}|", flat.Number,
                     flat.OwnerName, flat.EndReading - flat.StartReading,
                     flat.ReadingDate.ToString("dd.MM.yy"), flat.GetBillCost(cost).bill,
                     (DateTime.Now - flat.ReadingDate).ToString("dd"));
             }
             Console.WriteLine(
-                "|----|--------------------|---------------|------------------------|---------------------|----------------------------|-----------------------------------|");
+                "|----|---------------|------------------------|---------------------|----------------------------|-----------------------------------|");
         }
         
         private static void ShowApartment()
