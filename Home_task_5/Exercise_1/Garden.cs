@@ -12,31 +12,65 @@
         //Використовуємо алгоритм Джарвіса.
         public double CalculateFenceLength()
         {
-            double fenceLength = 0;
-            double minX = double.MaxValue;
-            double minY = double.MaxValue;
-            double maxX = double.MinValue;
-            double maxY = double.MinValue;
-
+            Tree minYTree = Trees[0];
             foreach (var tree in Trees)
             {
-                if (tree.x < minX)
-                    minX = tree.x;
-                if (tree.x > maxX)
-                    maxX = tree.x;
-                if (tree.y < minY)
-                    minY = tree.y;
-                if (tree.y > maxY)
-                    maxY = tree.y;
+                if (tree.y < minYTree.y)
+                    minYTree = tree;
+            }
+            
+            List<Tree> hull = new List<Tree>();
+            hull.Add(minYTree);
+
+            Tree currentTree = minYTree;
+            while (true)
+            {
+                Tree nextTree = null;
+                foreach (var tree in Trees)
+                {
+                    if (tree == currentTree)
+                        continue;
+
+                    if (nextTree == null)
+                    {
+                        nextTree = tree;
+                        continue;
+                    }
+
+                    double cross = CrossProduct(currentTree, nextTree, tree);
+                    if (cross > 0)
+                        nextTree = tree;
+                }
+
+                if (nextTree == minYTree)
+                    break;
+
+                hull.Add(nextTree);
+                currentTree = nextTree;
             }
 
-            fenceLength = 2 * (maxX - minX + maxY - minY);
+            double fenceLength = 0;
+            for (int i = 0; i < hull.Count; i++)
+            {
+                int j = (i + 1) % hull.Count;
+                double distance = Math.Sqrt(Math.Pow(hull[j].x - hull[i].x, 2) + Math.Pow(hull[j].y - hull[i].y, 2));
+                fenceLength += distance;
+            }
+
             return fenceLength;
         }
 
+        private double CrossProduct(Tree A, Tree B, Tree C)
+        {
+            double x1 = B.x - A.x;
+            double y1 = B.y - A.y;
+            double x2 = C.x - A.x;
+            double y2 = C.y - A.y;
+            return x1 * y2 - x2 * y1;
+        }
+        
         public int CompareTo(Garden other)
         {
-            // порівнюємо довжину огорожі двох садів
             double perimeter1 = CalculateFenceLength();
             double perimeter2 = other.CalculateFenceLength();
             if (perimeter1 < perimeter2)
@@ -75,19 +109,10 @@
 
         public static bool operator ==(Garden garden1, Garden garden2)
         {
-            // перевіряємо на рівність два об'єкти Garden
             if (ReferenceEquals(garden1, garden2))
             {
                 return true;
             }
-
-            // перевіряємо на null-об'єктність
-            if (garden1 is null || garden2 is null)
-            {
-                return false;
-            }
-
-            // порівнюємо довжину огорожі двох садів
             return garden1.CompareTo(garden2) == 0;
         }
 
