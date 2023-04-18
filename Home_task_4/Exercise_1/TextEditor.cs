@@ -20,7 +20,7 @@ namespace Exercise_1
         {
             List<string> sentences = new List<string>();
             string currentSentence = "";
-
+// Речення можуть бути на кілька стрічок (не обов'язково в двох сусідніх., як і інформація в дужках! Не  все алгоритмічно добре.
             foreach (string line in Text)
             {
                 string[] lineSentences = line.Split('.', '!', '?');
