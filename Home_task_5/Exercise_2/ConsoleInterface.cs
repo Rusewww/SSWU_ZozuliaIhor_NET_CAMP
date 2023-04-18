@@ -159,10 +159,10 @@
             foreach (var department in shop.Departments)
             {
                 var boxes = shop.PackProducts(department.Products, shop);
-                Console.WriteLine();
                 foreach (var box in boxes)
                 {
                     Console.WriteLine(box.ToString());
+                    Console.WriteLine();
                 }
             }
         }
