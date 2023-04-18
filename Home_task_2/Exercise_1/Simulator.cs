@@ -11,7 +11,7 @@ namespace Exercise_1
         //Поля класу відображабть роботу однієї помпи для кількох користувачів.
         private WaterTower _waterTower;
         private User[] _users;
-
+// хто створює ці об'єкти. Хто керує часом.Як контролюється рівень води в вежі?
         protected Simulator(WaterTower waterTower, User[] users)
         {
             _waterTower = waterTower;
