@@ -3,6 +3,8 @@
     internal class Department
     {
         public string Name { get; }
+        //Порушення інкапсуляції
+        // не враховано ієрархічну структуру.
         public List<Item> Products { get; }
 
         public Department(string name)
