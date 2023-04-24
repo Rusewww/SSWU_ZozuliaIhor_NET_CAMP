@@ -5,6 +5,7 @@ namespace Exercise_1
     public class TextEditor
     {
         private List<string> _text;
+        // Порушення інкапсуляції
         public List<string> Text
         {
             get { return _text; }
@@ -12,7 +13,7 @@ namespace Exercise_1
         }
 
         public TextEditor(List<string> text)
-        {
+        {// треба робити глибоку копію. 
             Text = text;
         }
 
@@ -42,7 +43,7 @@ namespace Exercise_1
         }
 
         public List<string> FindBrackets(char openBracket = '(', char closeBracket = ')')
-        {
+        {//     ваш метод залежить від порядкувикликів методу клієнта.
             var sentencesInBrackets = new List<string>();
             foreach (var sentence in Text)
             {
