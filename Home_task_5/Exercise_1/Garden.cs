@@ -5,7 +5,8 @@
         public List<Tree> Trees { get; set; }
 
         public Garden(List<Tree> trees)
-        {
+        {// Має бути глибока копія.
+        
             Trees = trees;
         }
 
@@ -47,6 +48,7 @@
 
                 hull.Add(nextTree);
                 currentTree = nextTree;
+                // Алгоритм реалізовано не повністю.
             }
 
             double fenceLength = 0;
