@@ -8,7 +8,7 @@ namespace Exercise_4
 {
     internal class Tensor
     {
-        private int[] _shape { get; }
+        private int[] _shape { get; }// Це лишнє. У класу і так є доступ до полів
         private int[] _data { get; }
 
         public int this[params int[] indices]
@@ -97,7 +97,7 @@ namespace Exercise_4
         {
             return ($"Count of dimensions: {_shape.Length}\nShape: {string.Join(", ", _shape)}");
         }
-
+//Не продумано систему обходу даних в загальному випадку.
         public string ToString()
         {
             var sb = new StringBuilder();
