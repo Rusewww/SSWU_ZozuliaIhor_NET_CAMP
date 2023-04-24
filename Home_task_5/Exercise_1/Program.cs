@@ -1,7 +1,7 @@
 ﻿namespace Exercise_1
 {
     class Program
-    {
+    {// Ihor	Zozulia	95	15	10	92	90	75	50	92,9. Вітаю Вас у 2 турі.
         static void Main(string[] args)
         {
             List<Tree> trees1 = new List<Tree>()
