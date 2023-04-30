@@ -2,9 +2,15 @@
 {
     public class SortedArrayMerger
     {
-        public static IEnumerable<int> MergeSortedArrays(params int[][] arrays)
+        private int[][] _arrays;
+        public SortedArrayMerger(int[][] arrays)
         {
-            var mergedArray = arrays.SelectMany(x => x).OrderBy(x => x);
+            this._arrays = (int[][]) arrays.Clone();
+        }
+
+        public IEnumerable<int> MergeSortedArrays()
+        {
+            var mergedArray = _arrays.SelectMany(x => x).OrderBy(x => x);
             foreach (var item in mergedArray)
             {
                 yield return item;
