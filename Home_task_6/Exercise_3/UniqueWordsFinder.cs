@@ -4,9 +4,22 @@ namespace Exercise_3
 {
     public class UniqueWordsFinder
     {
-        public static IEnumerable<string> GetUniqueWords(string text)
+        private string _text;
+        private IEnumerable<string> _uniqueWords;
+
+        public IEnumerable<string> UniqueWords
         {
-            var words = text.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            get { return new List<string>(_uniqueWords); }
+        }
+
+        public UniqueWordsFinder(string text)
+        {
+            _text = (string)text.Clone();
+        }
+        
+        public IEnumerable<string> GetUniqueWords()
+        {
+            var words = _text.Split(' ', StringSplitOptions.RemoveEmptyEntries);
             var uniqueWords = new HashSet<string>();
 
             foreach (var word in words)
@@ -19,6 +32,8 @@ namespace Exercise_3
                     yield return cleanedWord;
                 }
             }
+
+            _uniqueWords = uniqueWords;
         }
     }
 }
