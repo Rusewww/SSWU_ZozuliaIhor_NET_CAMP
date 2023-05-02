@@ -5,6 +5,7 @@ namespace Exercise_3
     public class UniqueWordsFinder
     {
         private string _text;
+        //не потрібно
         private IEnumerable<string> _uniqueWords;
 
         public IEnumerable<string> UniqueWords
@@ -32,7 +33,7 @@ namespace Exercise_3
                     yield return cleanedWord;
                 }
             }
-
+//Не потрібно
             _uniqueWords = uniqueWords;
         }
     }
