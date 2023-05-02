@@ -17,7 +17,7 @@ namespace Exercise_1
             int row = 0, col = 0;
             yield return _matrix[row, col];
             for (int i = 0; i < size * size - 1; i++)
-            {
+            {// НЕ ЕФЕКТИВНО. для генерації елемента достаньо 2 умов.
                 if ((row + col) % 2 == 0)
                 {
                     if (col == size - 1)
