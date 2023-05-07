@@ -1,9 +1,7 @@
 ﻿namespace Home_task_7
 {
-    public class ITrafficLight
+    public interface ITrafficLight
     {
-        event EventHandler<StateChangedEventArgs> StateChanged;
-
-        void Update(TimeSpan elapsedTime);
+        public void WriteColor(string color);
     }
 }

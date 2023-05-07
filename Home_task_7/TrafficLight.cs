@@ -1,53 +1,24 @@
 ﻿namespace Home_task_7
 {
-    public enum LightColor
+    public class TrafficLights
     {
-        Red,
-        Yellow,
-        Green
-    }
-
-    public class TrafficLight : ITrafficLight
-    {
-        private LightColor northSouthColor;
-        private LightColor eastWestColor;
-
-        public event EventHandler StateChanged;
-
-        public LightColor NorthSouthColor
+        private string _color;
+        private readonly Simulator _simulator;
+        
+        public string Color()
         {
-            get { return northSouthColor; }
-            set
-            {
-                if (northSouthColor != value)
-                {
-                    northSouthColor = value;
-                    OnStateChanged();
-                }
-            }
+            return (string)_color.Clone();
+        }
+        
+        public TrafficLights(string color, Simulator simulator)
+        {
+            _color = (string)color.Clone();
+            _simulator = simulator;
+            SubscribeTraffic();
         }
 
-        public LightColor EastWestColor
-        {
-            get { return eastWestColor; }
-            set
-            {
-                if (eastWestColor != value)
-                {
-                    eastWestColor = value;
-                    OnStateChanged();
-                }
-            }
-        }
-
-        public void Update(int secondsElapsed)
-        {
-            // TODO: Implement traffic light timing logic here
-        }
-
-        protected virtual void OnStateChanged()
-        {
-            StateChanged?.Invoke(this, EventArgs.Empty);
-        }
+        private void OnColorSwiped(string color) => _color = color;
+        private void SubscribeTraffic() => _simulator.SwipeColorEvent += OnColorSwiped;
+        public void UnsubscribeTraffic() => _simulator.SwipeColorEvent -= OnColorSwiped;
     }
 }
