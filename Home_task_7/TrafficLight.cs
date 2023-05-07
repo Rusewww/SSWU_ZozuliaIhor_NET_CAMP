@@ -17,8 +17,8 @@
             SubscribeTraffic();
         }
 
-        private void OnColorSwiped(string color) => _color = color;
-        private void SubscribeTraffic() => _simulator.SwipeColorEvent += OnColorSwiped;
-        public void UnsubscribeTraffic() => _simulator.SwipeColorEvent -= OnColorSwiped;
+        private void ColorSwipe(string color) => _color = color;
+        private void SubscribeTraffic() => _simulator.SwipeColorEvent += ColorSwipe;
+        public void UnsubscribeTraffic() => _simulator.SwipeColorEvent -= ColorSwipe;
     }
 }
