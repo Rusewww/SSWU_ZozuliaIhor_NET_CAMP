@@ -1,7 +1,7 @@
 ﻿namespace Home_task_7
 {
     public class Simulator
-    {
+    {// Недоліком Вашої програми є те, що у вас один клас виконує і візуалізацію результату і керівництво логікою переключення.
         public event Action<string> SwipeColorEvent;
         private readonly ITrafficLight _iTrafficLights;
         private readonly TrafficLights _trafficLights;
@@ -13,7 +13,7 @@
         }
 
         public async Task Start(int time)
-        {
+        {// Ці константи мають бути не вкоді методу.
             int timeSeconds = time * 1000;
             int delayRedAndGreen = (int)(timeSeconds * 0.75);
             int delayYellow = (int)(timeSeconds * 0.25);
