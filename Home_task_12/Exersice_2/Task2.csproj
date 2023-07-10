@@ -100,6 +100,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DB\ComicShop.edmx" />
+    <Content Include="DB\ComicShop.sql" />
     <Content Include="DB\ComicsShopModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ComicsShopModel.Context.cs</LastGenOutput>

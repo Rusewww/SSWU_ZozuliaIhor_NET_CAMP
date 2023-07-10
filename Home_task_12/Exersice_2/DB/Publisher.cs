@@ -18,7 +18,7 @@ namespace Exercise_2.DB
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Publisher()
         {
-            this.Item = new HashSet<Comic>();
+            this.Comic = new HashSet<Comic>();
         }
     
         public int Id { get; set; }
@@ -27,7 +27,7 @@ namespace Exercise_2.DB
         public string Country { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Comic> Item { get; set; }
+        public virtual ICollection<Comic> Comic { get; set; }
 
         public override string ToString()
         {

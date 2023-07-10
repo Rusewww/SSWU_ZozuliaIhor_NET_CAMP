@@ -5,13 +5,13 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="128ff6d3e43245e68428ac8ad0b72814" Name="Diagram1" >
-        <EntityTypeShape EntityType="ComputerStoreModel.Comic" Width="1.5" PointX="6.375" PointY="2.375" />
-        <EntityTypeShape EntityType="ComputerStoreModel.Category" Width="1.5" PointX="4.375" PointY="3.75" />
-        <EntityTypeShape EntityType="ComputerStoreModel.Publisher" Width="1.5" PointX="2.375" PointY="2" />
-        <EntityTypeShape EntityType="ComputerStoreModel.ComicParams" Width="1.5" PointX="4.375" PointY="0.625" />
-        <AssociationConnector Association="ComputerStoreModel.CategoryItem" />
-        <AssociationConnector Association="ComputerStoreModel.ItemItemParams" />
-        <AssociationConnector Association="ComputerStoreModel.ManufacturerItem" />
+        <EntityTypeShape EntityType="ComicsShop.Comic" Width="1.5" PointX="6.375" PointY="2.375" />
+        <EntityTypeShape EntityType="ComicsShop.Category" Width="1.5" PointX="4.375" PointY="3.75" />
+        <EntityTypeShape EntityType="ComicsShop.Publisher" Width="1.5" PointX="2.375" PointY="2" />
+        <EntityTypeShape EntityType="ComicsShop.ComicParams" Width="1.5" PointX="4.375" PointY="0.625" />
+        <AssociationConnector Association="ComicsShop.CategoryItem" />
+        <AssociationConnector Association="ComicsShop.ItemItemParams" />
+        <AssociationConnector Association="ComicsShop.ManufacturerItem" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

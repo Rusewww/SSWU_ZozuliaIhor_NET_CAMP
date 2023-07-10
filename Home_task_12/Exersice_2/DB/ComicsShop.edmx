@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="ComputerStoreModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ComicsShopModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CategorySet">
           <Key>
             <PropertyRef Name="Id" />
@@ -18,10 +18,10 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Height" Type="float" Nullable="false" />
-          <Property Name="Width" Type="float" Nullable="false" />
-          <Property Name="Depth" Type="float" Nullable="false" />
-          <Property Name="Weight" Type="float" Nullable="false" />
+          <Property Name="Language" Type="nvarchar(max)" />
+          <Property Name="Author" Type="nvarchar(max)" />
+          <Property Name="Country" Type="nvarchar(max)" />
+          <Property Name="Type" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="ItemSet">
           <Key>
@@ -32,12 +32,12 @@
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="Price" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="SerialNum" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="DateOfManufaturer" Type="datetime" Nullable="false" />
+          <Property Name="DateOfPublish" Type="datetime" Nullable="false" />
           <Property Name="CategoryId" Type="int" Nullable="false" />
-          <Property Name="ManufacturerId" Type="int" Nullable="false" />
+          <Property Name="PublisherId" Type="int" Nullable="false" />
           <Property Name="ItemParams_Id" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="ManufacturerSet">
+        <EntityType Name="PublisherSet">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -70,23 +70,23 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ManufacturerItem">
-          <End Role="ManufacturerSet" Type="Self.ManufacturerSet" Multiplicity="1" />
+        <Association Name="FK_PublisherItem">
+          <End Role="PublisherSet" Type="Self.PublisherSet" Multiplicity="1" />
           <End Role="ItemSet" Type="Self.ItemSet" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="ManufacturerSet">
+            <Principal Role="PublisherSet">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="ItemSet">
-              <PropertyRef Name="ManufacturerId" />
+              <PropertyRef Name="PublisherId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ComputerStoreModelStoreContainer">
+        <EntityContainer Name="ComicsShopModelStoreContainer">
           <EntitySet Name="CategorySet" EntityType="Self.CategorySet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ItemParamsSet" EntityType="Self.ItemParamsSet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ItemSet" EntityType="Self.ItemSet" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ManufacturerSet" EntityType="Self.ManufacturerSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PublisherSet" EntityType="Self.PublisherSet" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_CategoryItem" Association="Self.FK_CategoryItem">
             <End Role="CategorySet" EntitySet="CategorySet" />
             <End Role="ItemSet" EntitySet="ItemSet" />
@@ -95,30 +95,30 @@
             <End Role="ItemParamsSet" EntitySet="ItemParamsSet" />
             <End Role="ItemSet" EntitySet="ItemSet" />
           </AssociationSet>
-          <AssociationSet Name="FK_ManufacturerItem" Association="Self.FK_ManufacturerItem">
-            <End Role="ManufacturerSet" EntitySet="ManufacturerSet" />
+          <AssociationSet Name="FK_PublisherItem" Association="Self.FK_PublisherItem">
+            <End Role="PublisherSet" EntitySet="PublisherSet" />
             <End Role="ItemSet" EntitySet="ItemSet" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="ComputerStoreModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
-        <EntityContainer Name="ComputerStoreModelContainer" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="ComicSet" EntityType="ComputerStoreModel.Comic" />
-          <EntitySet Name="CategorySet" EntityType="ComputerStoreModel.Category" />
-          <EntitySet Name="PublisherSet" EntityType="ComputerStoreModel.Publisher" />
-          <EntitySet Name="ComicParamsSet" EntityType="ComputerStoreModel.ComicParams" />
-          <AssociationSet Name="CategoryItem" Association="ComputerStoreModel.CategoryItem">
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="ComicsShopModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="ComicsShopModelContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ComicSet" EntityType="ComicsShopModel.Comic" />
+          <EntitySet Name="CategorySet" EntityType="ComicsShopModel.Category" />
+          <EntitySet Name="PublisherSet" EntityType="ComicsShopModel.Publisher" />
+          <EntitySet Name="ComicParamsSet" EntityType="ComicsShopModel.ComicParams" />
+          <AssociationSet Name="CategoryItem" Association="ComicsShopModel.CategoryItem">
             <End Role="Category" EntitySet="CategorySet" />
             <End Role="Item" EntitySet="ComicSet" />
           </AssociationSet>
-          <AssociationSet Name="ItemItemParams" Association="ComputerStoreModel.ItemItemParams">
+          <AssociationSet Name="ItemItemParams" Association="ComicsShopModel.ItemItemParams">
             <End Role="Item" EntitySet="ComicSet" />
             <End Role="ItemParams" EntitySet="ComicParamsSet" />
           </AssociationSet>
-          <AssociationSet Name="ManufacturerItem" Association="ComputerStoreModel.ManufacturerItem">
-            <End Role="Manufacturer" EntitySet="PublisherSet" />
+          <AssociationSet Name="PublisherItem" Association="ComicsShopModel.PublisherItem">
+            <End Role="Publisher" EntitySet="PublisherSet" />
             <End Role="Item" EntitySet="ComicSet" />
           </AssociationSet>
         </EntityContainer>
@@ -132,10 +132,10 @@
           <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
           <Property Name="Barcode" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="DateOfPublish" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Category" Relationship="ComputerStoreModel.CategoryItem" FromRole="Item" ToRole="Category" />
+          <NavigationProperty Name="Category" Relationship="ComicsShopModel.CategoryItem" FromRole="Item" ToRole="Category" />
           <Property Name="CategoryId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="ComicParams" Relationship="ComputerStoreModel.ItemItemParams" FromRole="Item" ToRole="ItemParams" />
-          <NavigationProperty Name="Publisher" Relationship="ComputerStoreModel.ManufacturerItem" FromRole="Item" ToRole="Manufacturer" />
+          <NavigationProperty Name="ComicParams" Relationship="ComicsShopModel.ItemItemParams" FromRole="Item" ToRole="ItemParams" />
+          <NavigationProperty Name="Publisher" Relationship="ComicsShopModel.PublisherItem" FromRole="Item" ToRole="Publisher" />
           <Property Name="PublisherId" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Category">
@@ -145,7 +145,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="Description" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="Comic" Relationship="ComputerStoreModel.CategoryItem" FromRole="Category" ToRole="Item" />
+          <NavigationProperty Name="Comic" Relationship="ComicsShopModel.CategoryItem" FromRole="Category" ToRole="Item" />
         </EntityType>
         <EntityType Name="Publisher">
           <Key>
@@ -155,22 +155,22 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="WEB_Site_Link" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="Country" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="Comic" Relationship="ComputerStoreModel.ManufacturerItem" FromRole="Manufacturer" ToRole="Item" />
+          <NavigationProperty Name="Comic" Relationship="ComicsShopModel.PublisherItem" FromRole="Publisher" ToRole="Item" />
         </EntityType>
         <EntityType Name="ComicParams">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Language" Type="Double" Nullable="false" />
-          <Property Name="Author" Type="Double" Nullable="false" />
-          <Property Name="Country" Type="Double" Nullable="false" />
-          <Property Name="Type" Type="Double" Nullable="false" />
-          <NavigationProperty Name="Comic" Relationship="ComputerStoreModel.ItemItemParams" FromRole="ItemParams" ToRole="Item" />
+          <Property Name="Language" Type="Int32" Nullable="true" />
+          <Property Name="Author" Type="Int32" Nullable="true" />
+          <Property Name="Country" Type="Int32" Nullable="true" />
+          <Property Name="Type" Type="Int32" Nullable="true" />
+          <NavigationProperty Name="Comic" Relationship="ComicsShopModel.ItemItemParams" FromRole="ItemParams" ToRole="Item" />
         </EntityType>
         <Association Name="CategoryItem">
-          <End Type="ComputerStoreModel.Category" Role="Category" Multiplicity="1" />
-          <End Type="ComputerStoreModel.Comic" Role="Item" Multiplicity="*" />
+          <End Type="ComicsShopModel.Category" Role="Category" Multiplicity="1" />
+          <End Type="ComicsShopModel.Comic" Role="Item" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Category">
               <PropertyRef Name="Id" />
@@ -181,14 +181,14 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="ItemItemParams">
-          <End Type="ComputerStoreModel.Comic" Role="Item" Multiplicity="1" />
-          <End Type="ComputerStoreModel.ComicParams" Role="ItemParams" Multiplicity="1" />
+          <End Type="ComicsShopModel.Comic" Role="Item" Multiplicity="1" />
+          <End Type="ComicsShopModel.ComicParams" Role="ItemParams" Multiplicity="1" />
         </Association>
-        <Association Name="ManufacturerItem">
-          <End Type="ComputerStoreModel.Publisher" Role="Manufacturer" Multiplicity="1" />
-          <End Type="ComputerStoreModel.Comic" Role="Item" Multiplicity="*" />
+        <Association Name="PublisherItem">
+          <End Type="ComicsShopModel.Publisher" Role="Publisher" Multiplicity="1" />
+          <End Type="ComicsShopModel.Comic" Role="Item" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Manufacturer">
+            <Principal Role="Publisher">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Item">
@@ -201,23 +201,23 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
     <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="ComputerStoreModelStoreContainer" CdmEntityContainer="ComputerStoreModelContainer">
+  <EntityContainerMapping StorageEntityContainer="ComicsShopModelStoreContainer" CdmEntityContainer="ComicsShopModelContainer">
     <EntitySetMapping Name="ComicSet">
-      <EntityTypeMapping TypeName="IsTypeOf(ComputerStoreModel.Comic)">
+      <EntityTypeMapping TypeName="IsTypeOf(ComicsShopModel.Comic)">
         <MappingFragment StoreEntitySet="ItemSet">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="Price" ColumnName="Price" />
           <ScalarProperty Name="Barcode" ColumnName="SerialNum" />
-          <ScalarProperty Name="DateOfPublish" ColumnName="DateOfManufaturer" />
+          <ScalarProperty Name="DateOfPublish" ColumnName="DateOfPublish" />
           <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
-          <ScalarProperty Name="PublisherId" ColumnName="ManufacturerId" />
+          <ScalarProperty Name="PublisherId" ColumnName="PublisherId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="CategorySet">
-      <EntityTypeMapping TypeName="IsTypeOf(ComputerStoreModel.Category)">
+      <EntityTypeMapping TypeName="IsTypeOf(ComicsShopModel.Category)">
         <MappingFragment StoreEntitySet="CategorySet">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -226,8 +226,8 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="PublisherSet">
-      <EntityTypeMapping TypeName="IsTypeOf(ComputerStoreModel.Publisher)">
-        <MappingFragment StoreEntitySet="ManufacturerSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ComicsShopModel.Publisher)">
+        <MappingFragment StoreEntitySet="PublisherSet">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="WEB_Site_Link" ColumnName="WEB_Site_Link" />
@@ -236,17 +236,17 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ComicParamsSet">
-      <EntityTypeMapping TypeName="IsTypeOf(ComputerStoreModel.ComicParams)">
+      <EntityTypeMapping TypeName="IsTypeOf(ComicsShopModel.ComicParams)">
         <MappingFragment StoreEntitySet="ItemParamsSet">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Language" ColumnName="Height" />
-          <ScalarProperty Name="Author" ColumnName="Width" />
-          <ScalarProperty Name="Country" ColumnName="Depth" />
-          <ScalarProperty Name="Type" ColumnName="Weight" />
+          <ScalarProperty Name="Language" ColumnName="Language" />
+          <ScalarProperty Name="Author" ColumnName="Author" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="ItemItemParams" TypeName="ComputerStoreModel.ItemItemParams" StoreEntitySet="ItemSet">
+    <AssociationSetMapping Name="ItemItemParams" TypeName="ComicsShopModel.ItemItemParams" StoreEntitySet="ItemSet">
       <EndProperty Name="ItemParams">
         <ScalarProperty Name="Id" ColumnName="ItemParams_Id" />
       </EndProperty>
